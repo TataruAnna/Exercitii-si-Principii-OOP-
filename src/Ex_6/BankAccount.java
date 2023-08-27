@@ -28,7 +28,7 @@ public abstract class BankAccount {
     public static void addAccount(Client client){
 
     }
-    public abstract int withdraw(int amount);
+    public abstract int withdraw (int amount) throws OperationNotSupportedException;
 
-    public abstract int deposit(int amount);
+    public abstract int deposit(int amount) throws OperationNotSupportedException;
 }

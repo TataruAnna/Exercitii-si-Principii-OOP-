@@ -59,7 +59,7 @@ public class Client {
         }
     }
 
-    public int deposit(int amount, String accountNumber) {
+    public int deposit(int amount, String accountNumber) throws OperationNotSupportedException{
         //caut in accounts contul cu numarul account number
         //depozitez in el suma de bani amount
         BankAccount account = findAccount(accountNumber);
@@ -70,7 +70,7 @@ public class Client {
         return account.deposit(amount);
     }
 
-    public int withdraw(int amount, String accountNumber) {
+    public int withdraw(int amount, String accountNumber) throws OperationNotSupportedException{
         //caut in accounts contul cu numarul account number
         //depozitez in el suma de bani amount
         BankAccount account = findAccount(accountNumber);

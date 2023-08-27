@@ -17,15 +17,16 @@ public class SpendingAccount extends BankAccount{
     }
 
     @Override
-    public int withdraw(int amount) {
-        if(amount <= maxWithdrawlAmount + getBalance()){
-           setBalance(getBalance() - amount);
+    public int withdraw(int amount) throws OperationNotSupportedException {
+        if(amount > maxWithdrawlAmount + getBalance()){
+           throw new OperationNotSupportedException(" nu poti retrage mai mult decat "+ maxWithdrawlAmount + " plus "+ getBalance());
         }
+        setBalance(getBalance() - amount);
         return getBalance();
     }
 
     @Override
-    public int deposit(int amount) {
+    public int deposit(int amount) throws OperationNotSupportedException{
         setBalance(getBalance()+amount);
         return getBalance();
     }

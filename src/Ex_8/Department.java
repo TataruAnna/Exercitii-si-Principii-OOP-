@@ -84,6 +84,22 @@ public class Department {
         }
         return "Nu s-a gasit adresa";
     }
+    public String findStreetAdressByName(String name){ //8.9
+        for(int i = 0; i< numberOfEmployeesAdded; i++){
+            if(name.equals(employees[i].getAdressStreet())){
+                return "Strada  " + employees[i].getAdressStreet()+ " a fost gasita in lista ";
+            }
+        }
+        return "Nu s-a gasit adresa";
+    }
+    public Employee getEmplByName(String employeeName){
+        for(int i =0;i<numberOfEmployeesAdded;i++){
+            if(employeeName.equals(employees[i].getName())){
+                return employees[i];
+            }
+        }
+        return null;
+    }
 
     @Override
     public String toString() {

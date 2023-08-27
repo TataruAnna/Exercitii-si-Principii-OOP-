@@ -83,8 +83,49 @@ public class Company {
             }
         }
     }
+    //8.14. scrie o metoda care printeaza strada adresei unui anumit angajat din companie
+    public String printStrByEmp(String name) {
+        //caut pe fiecare departament in parte, in lista de angajati
+        for (int i = 0; i < numberOfDepartmentsAdded; i++) {
+            //caut angajatul cu numele empployee.getName in departamentul de la pozitia i
+            Employee employee = departments[i].getEmplByName(name);
+            if (employee!=null){
+                return employee.getAdressStreet();
+            }
+//            Department currentDep = departments[i];
+//
+//           for(int j=0; j< currentDep.getNumberOfEmployeesAdded();j++){
+//               Employee currentEmp = departments[i].getEmployees()[j];
+//
+//               if(name.equals(currentEmp.getName())){
+//                   return currentEmp.getAdressStreet();
+//               }
+//           }
 
+        }
+        return "nu s-a gasit ";
 
+    }
+    public int getNumberOfEmployees(){
+        int count = 0;
+        for (int i = 0; i < departments.length; i++) {
+            count += departments[i].getNumberOfEmployeesAdded();
+            
+        }
+        return count;
+    }
+    public String[] getAllEmployees (){
+        String[] allEmployeeNames = new String[getNumberOfEmployees()];
+        int k=0;
+        for (int i = 0; i < departments.length; i++) {
+           for(int j= 0;j<departments[i].getNumberOfEmployeesAdded();j++){
+               allEmployeeNames[k]=departments[i].getEmployees()[j].getName();
+               k++;
+           }
 
+        }
+        return allEmployeeNames;
+
+    }
 
 }

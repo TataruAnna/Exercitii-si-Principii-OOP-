@@ -17,8 +17,10 @@ public class Main {
 
 //        System.out.println(employee1.getName());
 //        System.out.println(employee1.getAdressStreet());
+
         Department department = new Department("dep1",2);
         Department department2 = new Department("dep2",2);
+
         department.addEmployee(employee1);
         department.addEmployee(employee2);
         department2.addEmployee(employee3);
@@ -44,6 +46,8 @@ public class Main {
         company.printAllEmpByDep("dep1"); //8.11
         company.printEmpNumber("dep1"); //8.12
         company.printAllEmpStrByDep("dep1"); //8.13
+        company.printStrByEmp("Georgel");
+
 
 
     }

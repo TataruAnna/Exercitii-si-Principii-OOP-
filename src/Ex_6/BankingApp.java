@@ -15,11 +15,15 @@ public class BankingApp {
 
         client.listAccounts();
         System.out.println(client.checkAccountDetails("numarul3")); //de completat functia
-        client.withdraw(100,"numarul2"); //de completat functia
-        System.out.println(client.checkAccountDetails("numarul2"));
-        client.withdraw(100, "numarul2");
-        System.out.println(client.checkAccountDetails("numarul2"));
-
+        try {
+            client.withdraw(100, "numarul2"); //de completat functia
+        }catch(OperationNotSupportedException e){
+            System.out.println(e.getMessage());
+        }
+            System.out.println(client.checkAccountDetails("numarul2"));
+//        client.withdraw(100, "numarul2");
+//        System.out.println(client.checkAccountDetails("numarul2"));
+//        client.deposit(2001, "numarul4");
     }
 
 }

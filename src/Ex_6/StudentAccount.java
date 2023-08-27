@@ -14,18 +14,20 @@ public class StudentAccount extends BankAccount{
     }
 
     @Override
-    public int withdraw(int amount) {
-       if(amount <= getBalance()){
-           setBalance(getBalance()-amount);
+    public int withdraw(int amount) throws OperationNotSupportedException{
+       if(amount < getBalance()){
+           throw new OperationNotSupportedException(" You cannot withdraw more than you have in your student account ");
        }
+        setBalance(getBalance()-amount);
         return getBalance();
     }
 
     @Override
-    public int deposit(int amount) {
-        if (amount <= maxDepositAmount){
-            setBalance(getBalance() + amount);
+    public int deposit(int amount) throws OperationNotSupportedException{
+        if (amount > maxDepositAmount){
+            throw new OperationNotSupportedException("You cannot deposit more than " + maxDepositAmount);
         }
+        setBalance(getBalance() + amount);
         return getBalance();
 
     }
