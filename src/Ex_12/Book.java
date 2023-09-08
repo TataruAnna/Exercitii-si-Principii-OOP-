@@ -3,14 +3,25 @@ package Ex_12;
 public class Book {
     private String title;
     private String author;
-    private int ISBNCode;
+    private String ISBNCode;
     private int totalNumberOfCopies;
     private int borrowedNumberOfCopies;
 
-    public Book(String title, String author, int ISBNCode) {
+    private boolean status; //  statusul e true daca cartea e in biblioteca si false daca e imprumutata
+
+    public Book(String title, String author, String ISBNCode) {
         this.title = title;
         this.author = author;
         this.ISBNCode = ISBNCode;
+        this.status=true;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getTitle() {
@@ -29,11 +40,11 @@ public class Book {
         this.author = author;
     }
 
-    public int getISBNCode() {
+    public String getISBNCode() {
         return ISBNCode;
     }
 
-    public void setISBNCode(int ISBNCode) {
+    public void setISBNCode(String ISBNCode) {
         this.ISBNCode = ISBNCode;
     }
 
@@ -42,6 +53,7 @@ public class Book {
     }
 
     public void setTotalNumberOfCopies(int totalNumberOfCopies) {
+
         this.totalNumberOfCopies = totalNumberOfCopies;
     }
 
@@ -53,4 +65,16 @@ public class Book {
         this.borrowedNumberOfCopies = borrowedNumberOfCopies;
     }
 
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", ISBNCode='" + ISBNCode + '\'' +
+                ", totalNumberOfCopies=" + totalNumberOfCopies +
+                ", borrowedNumberOfCopies=" + borrowedNumberOfCopies +
+                ", status=" + status +
+                '}';
+    }
 }
