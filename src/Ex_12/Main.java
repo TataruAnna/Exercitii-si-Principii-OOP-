@@ -6,8 +6,8 @@ public class Main {
         Book book2 = new Book("carte2", "autor2", "cbd258");
         Book book3 = new Book("carte3", "autor3", "xyz258");
         Book book4 = new Book("carte4", "autor4", "qwe586");
-        Book book5 = new Book("carte5", "autor5", "tyu789");
-        Book book6 = new Book("carte6", "autor6", "pli254");
+        Book book5 = new Book("carte4", "autor4", "tyu789");
+        Book book6 = new Book("carte4", "autor4", "pli254");
         Book book7 = new Book("carte7", "autor7", "fds456");
         Book book8 = new Book("carte8", "autor8", "wer478");
         Book book9= new Book("carte2", "autor2", "asd963");
@@ -83,5 +83,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        admin.deleteBook("qwe586",2);
+        library1.viewListOfAllBooks();
     }
 }

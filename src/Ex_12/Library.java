@@ -65,6 +65,7 @@ public class Library {
         }
         return null;
     }
+
     public boolean addBook(Book book){
         book.setTotalNumberOfCopies(1);
         for (int i = 0; i <numberOfBooksAdded ; i++) {
@@ -73,11 +74,27 @@ public class Library {
                 book.setTotalNumberOfCopies(book.getTotalNumberOfCopies()+1);
             }
         }
+
         bookList[numberOfBooksAdded]=book;
         numberOfBooksAdded++;
 
 
+
         return true;
+    }
+
+    public boolean deleteBook(String ISBNCode){
+        int index = findIndexOfBook(ISBNCode);
+//        if(index==-1){
+//            throw new Exception("nu s-a gasit cartea");
+//        }
+        for (int i = index; i < numberOfBooksAdded-1 ; i++) {
+            bookList[i]=bookList[i+1];
+        }
+        bookList[numberOfBooksAdded-1]=null;
+        numberOfBooksAdded--;
+        return true;
+
     }
     public boolean addClient(Client client){
         clientList[numberOfClientsAdded]= client;
@@ -93,6 +110,8 @@ public class Library {
         }
         return false;
     }
+
+
 
     public int findIndexOfBook(String ISBNCode){
         for (int i = 0; i <numberOfBooksAdded ; i++) {

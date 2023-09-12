@@ -11,7 +11,7 @@ public class DeluxeBurger extends BaseBurger {
     @Override
     public boolean handleAddition(Addition addition) throws Exception{
         if (getNumberOfAdditionsAdded() == 2 || (!addition.getName().equals("cartofi") && !addition.getName().equals("racoritoare"))){
-            throw new Exception("äi max 2 aditii si pot fi doar cartofi sau racoritoare");
+            throw new Exception("ai max 2 aditii si pot fi doar cartofi sau racoritoare");
         }
         addAddition(addition);
         return true;

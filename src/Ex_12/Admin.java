@@ -11,14 +11,47 @@ public class Admin extends User {
     public boolean deleteBook(String ISBNCode){
 
         //sterge cu totul cartea cu toate copiile ei din librarie
-        //cartea sau copiile ei nu trebuie sa fie imprumutate
+
+        //cartea sau copiile ei trebuie sa existe in lista de carti si nu trebuie sa fie imprumutate
+        //se cauta cartea il lista de carti dupa cod
+          // se identifica si restul de copii existente
+            // se sterge cartea si copiile identificate cu o functie separata ce sterge o singura carte
+       Book[] bookList = getLibrary().getBookList();
+       if(getLibrary().isBookInList(ISBNCode)) { //daca este codul in lista
+           Book originalBook = getLibrary().getBookDetailsByCode(ISBNCode); // retin cartea intr-o variabila
+
+           if (originalBook.getBorrowedNumberOfCopies() == 0) { //daca nu este imprumutata
+                   for (int j = 0; j < getLibrary().getNumberOfBooksAdded(); j++) { //verific cartea retinuta cu restul de cartilor sa vad daca este dupplicat
+                       while (originalBook.getAuthor().equals(bookList[j].getAuthor()) && originalBook.getTitle().equals(bookList[j].getTitle())) {
+                           getLibrary().deleteBook(bookList[j].getISBNCode()); //sterg duplicatul;
+                       }
+                   }
+           }
+       }
         return true;
     }
 
     public boolean deleteBook(String ISBNCode, int numberOfCopies){
-
         //sterge o copie sau mai multe  a cartii  din lista
+        //se identifica cartea in lista
+        //cartea sau copiile ei trebuie sa existe in lista de carti si nu trebuie sa fie imprumutate
+        //numarul de copii citit de la tastatura trebuie sa fie mai mic sau egal cu numarul total de copii
+
+        Book[] bookList = getLibrary().getBookList();
+        if(getLibrary().isBookInList(ISBNCode)) { //daca este codul in lista
+            Book originalBook = getLibrary().getBookDetailsByCode(ISBNCode); // retin cartea intr-o variabila
+            int count =0;
+            if (originalBook.getBorrowedNumberOfCopies() == 0) { //daca nu este imprumutata
+                for (int j = 0; j < getLibrary().getNumberOfBooksAdded(); j++) { //verific cartea retinuta cu restul de cartilor sa vad daca este dupplicat
+                    while (originalBook.getAuthor().equals(bookList[j].getAuthor()) && originalBook.getTitle().equals(bookList[j].getTitle()) && count<numberOfCopies) {
+                        getLibrary().deleteBook(bookList[j].getISBNCode()); //sterg duplicatul;
+                        count++;
+                    }
+                }
+            }
+        }
         return true;
+
     }
     public void listAllBooks(Library library)throws Exception{
         Book[] bookList = library.getBookList();

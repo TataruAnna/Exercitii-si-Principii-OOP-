@@ -117,7 +117,7 @@ public class Client extends User {
     public boolean returnBook(String ISBNCode) {
         Book[] bookList = getLibrary().getBookList();
         Book returnedBook = getLibrary().getBookDetailsByCode(ISBNCode);
-        if (numberOfBorrowedbooks != 0) {  //daca numarul de carti imprumutate e diferit de 0 , adica daca am carti imprumutate
+        if (numberOfBorrowedbooks != 0 && isCodeBorrowed(ISBNCode)) {  //daca numarul de carti imprumutate e diferit de 0 , adica daca am carti imprumutate, si daca codul este imprumutat
             int index = findIndexOfBorrowedBook(ISBNCode); //caut indexul unde se afla cartea cautata in lista de carti imprumutate
             for (int i = index; i < numberOfBorrowedbooks - 1; i++) { // parcurg lista de coduri imprumutate si sterg codul imprumutat
                 borrowedBooksCodes[i] = borrowedBooksCodes[i + 1];
